@@ -2,11 +2,12 @@
 Этот репозиторий не предназначен для объяснения операционной системы Linux, но он может быть очень полезен как напоминание о том, как работает определенная команда Linux. В первой части этого репозитория вы можете найти хорошие примеры практически всего, что связано с командами Linux, во второй части вы найдете все, что связано с программированием в командной строке.
 
 - [Команды Linux](#команды-linux)
-  - [Полезные Команды Linux](#полезные_команды-linux)
-  - [Типы Файлов Linux](#типы-файлов-linux])
-  - [Терминал](#терминал)
-  - [Система Навигации По Файлам](#система-навигации-по-файлам)
-  - [Подкаталоги Linux](#linux-sub-directories)
+  - [Помощь](#помощь)
+  - [Полезные Команды Linux](#полезные-команды-linux)
+  - [Типы Файлов Linux](#типы-файлов-linux)
+  - [Терминал:](#терминал)
+  - [Система навигации по файлам](#система-навигации-по-файлам)
+  - [Подкаталоги Linux](#подкаталоги-linux)
   - [ls command and its options](#ls-command-and-its-options)
   - [Creation of directories](#creation-of-directories)
   - [Removing directories rm and rmdir commands](#removing-directories-rm-and-rmdir-commands)
@@ -45,17 +46,23 @@
       - [Users and groups](#users-and-groups)
       - [Umask](#umask)
   - [Working with editors](#working-with-editors)
-  - [Stackoverflow questions](#stackoverflow-questions)
   - [Checking Resource Usage](#checking-resource-usage)
+  - [Package Management(ubuntu)](#package-managementubuntu)
   - [Managing systemd units](#managing-systemd-units)
   - [Viewing Logs](#viewing-logs)
   - [Managing users](#managing-users)
   - [SSH](#ssh)
-  - [Bash history](#bash-history)- 
+  - [Bash history](#bash-history)
+  - [Process control commands](#process-control-commands)
+    - [Types of processes](#types-of-processes)
+    - [background/foreground mode](#backgroundforeground-mode)
+    - [ps command:](#ps-command)
+    - [top command:](#top-command)
+    - [kill command:](#kill-command)
   - [Network linux commands](#network-linux-commands)
   - [man page](#man-page)
-
-
+  - [curl command](#curl-command)
+  - [Stackoverflow questions](#stackoverflow-questions)
 - [Shell scripting](#shell-scripting)
   - [What is Shell?](#what-is-shell)
   - [Types of Shell?](#types-of-shell)
@@ -90,6 +97,7 @@
         - [Return statement](#return-statement)
         - [break vs exit vs return](#break-vs-exit-vs-return)
         - [How to call functions present in another script](#how-to-call-functions-present-in-another-script)
+  - [Various topics](#various-topics)
 
 # Команды Linux
 ## Помощь
@@ -126,11 +134,10 @@
 
 ## Типы Файлов Linux
 
-Linux имеет следующие типы фалов:
+Чтобы показать тип файла, используйте команду `file имя_файла`. Linux читает файлы на основе их содержимого, а не на основе их расширений. Linux имеет следующие типы фалов:
 - Каталог или directory file.
 - Обычный файл или normal file (бинарный или текстовый).
 - Файл устройства или device file: каждое устройство представлено в виде файла.
-- Чтобы показать тип файла, используйте команду `file имя_файла. Linux читает файлы на основе их содержимого, а не на основе их расширений.
 
 ## Терминал:
 - чтобы открыть терминал, используйте горячие клавиши ctrl + alt + t
@@ -138,30 +145,29 @@ Linux имеет следующие типы фалов:
 - Чтобы показать файл, представляющий текущий терминал, используйте команду `tty`, которая выведет путь к файлу: /dev/pts/0
 - Чтобы показать файлы в текущем каталоге, используйте команду `ls -l`, где `-l` означает длинный список (long listing)."
 
-## File Navigation System
+## Система навигации по файлам
 
-- Display hidden files: `ls -a`  `-a` means all.
-- Home directory: `/home/user1`, `/home` contains the home users directories.
-- Go directly to the home directory: `cd` or `cd ~`
-- Go to the previous directory: `cd -`
-- `/` is the topmost root.
+Домашний каталог находится по адресу: `/home/имя_пользователя`, где `/home` содержит домашние каталоги всех пользователей, а `/` - это самый верхний корень.
+- Отобразить скрытые файлы: `ls -a`, где  `-a`означает все (all).
+- Перейи в домашний каталог: `cd` или `cd ~`
+- Перейти в предыдущий каталог: `cd -`
 
-## Linux sub directories
+## Подкаталоги Linux
 
-- bin directory: it contains all binaries executable related to our linux commands, `which touch` will print `/user/bin/touch`
-- sbin directory: it means system bin, an it contains binary executable related to the super user. 
-- etc directory: it contains system configuration information required by the operating system, for example the passwords of the users `/etc/passwd`, groups info `/etc/group` and hosts info `/etc/hosts`(ip addresses and dns names).
-- tmp directory: `tmp` means temporary, if any file or directory is required temporary, it is created under the tmp folder in the current session. the content of the directory will be deleted automatically after the shutdown.
-- dev directory: `dev` means device, all the device related files will be stored in this directory, using those files, we can communicate with the device, tty file for terminal related files, hd for hard drive file ...
-- mnt directory, media directory(for mounting).
-- opt directory: opt means optional, it contains all the 3rd part software installation files.
-- lib directory: lib means libraries, which are required by applications.
-- var: var means variable data, variable data will be stored inside this directory, for example the log files. 
-- usr: all users related software.
-- home: every user has a separate folder to hold his specific data like images, documents and so one.
-- root directory: home directory of the super user.
-- proc: proc means process, for each process a unique id is allocated, and a separate directory will be created inside the proc folder.
-- boot directory: it contains the required files to boot the linux system.
+- `bin` каталог: он содержит все исполняемые двоичные файлы, относящиеся к нашим командам Linux, `which touch` выведет `/user/bin/touch`
+- `sbin` каталог: он содержит все исполняемые двоичные файлы, относящиеся к суперпользователю.
+- `etc` каталог: он содержит информацию о конфигурации системы, требуемую операционной системой, например пароли пользователей `/etc/passwd`, информацию о группах `/etc/group` and информацию о хостах `/etc/hosts`(ip адреса и dns имена).
+- `tmp` каталог: `tmp` означает временный (temporary). Если какой-либо файл или каталог является временным, он создается в папке `tmp` в текущем сеансе. содержимое каталога будет удалено автоматически после завершения работы.
+- `dev` каталог: `dev` означает устройство (device). Все файлы, относящиеся к устройству, будут храниться в этом каталоге. Используя их, мы можем взаимодействовать с устройством: `tty` - с файлами, относящимися к терминалу, файл `hd` - с файлами на жестком диске и т.д.
+- `mnt` каталог, каталог носителей (для монтирования).
+- `opt` каталог: `opt` означает оциональный (optional), он содержит все установочные файлы программного обеспечения сторонних производителей.
+- `lib` каталог: `lib` означает библиотеки (libraries), которые требуются в приложениях.
+- `var`каталлог: `var` означает переменные данные (variable data). В этом каталоге будут храниться переменные данные, например файлы журналов.
+- `usr`: программное обеспечение, связанное со всеми пользователями.
+- `home`: у каждого пользователя есть отдельная папка для хранения его конкретных данных, таких как изображения, документы и так далее.
+- `root` каталог: домашний каталог супер пользователя.
+- `proc` каталог: `proc` означает процесс (process), для каждого процесса присваивается уникальный идентификатор, и внутри папки `proc` будет создан отдельный каталог.
+- boot каталог: он содержит файлы, необходимые для загрузки системы Linux.
 
 ## ls command and its options
 
