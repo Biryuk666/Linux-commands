@@ -1,12 +1,12 @@
-## Introduction
-This repository contains my personal notes on the [linux commands with shell programming](https://www.durgasoftonline.com/s/store/courses/description/Linux-with-Shell-ProgrammingSEDAWK-and-many-more) course given by sir Durga. This repository is not intended to explain the Linux operating system, but it can be very useful as a reminder of how a specific Linux command works. In the first part of this repository, you can find good examples of almost everything related to linux commands, in the second part you will find everything related to shell programming. 
+## Введение
+Этот репозиторий не предназначен для объяснения операционной системы Linux, но он может быть очень полезен как напоминание о том, как работает определенная команда Linux. В первой части этого репозитория вы можете найти хорошие примеры практически всего, что связано с командами Linux, во второй части вы найдете все, что связано с программированием в командной строке.
 
-- [Linux Commands](#linux-commands)
-  - [Useful Linux commands](#useful-linux-commands)
-  - [Linux Files Types](#linux-files-types)
-  - [Terminal](#terminal)
-  - [File Navigation System](#file-navigation-system)
-  - [Linux sub directories](#linux-sub-directories)
+- [Команды Linux](#команды-linux)
+  - [Полезные Команды Linux](#полезные_команды-linux)
+  - [Типы Файлов Linux](#типы-файлов-linux])
+  - [Терминал](#терминал)
+  - [Система Навигации По Файлам](#система-навигации-по-файлам)
+  - [Подкаталоги Linux](#linux-sub-directories)
   - [ls command and its options](#ls-command-and-its-options)
   - [Creation of directories](#creation-of-directories)
   - [Removing directories rm and rmdir commands](#removing-directories-rm-and-rmdir-commands)
@@ -91,53 +91,52 @@ This repository contains my personal notes on the [linux commands with shell pro
         - [break vs exit vs return](#break-vs-exit-vs-return)
         - [How to call functions present in another script](#how-to-call-functions-present-in-another-script)
 
-# Linux Commands
-## Help
-- `man, help, apropos, whereis, whatis, which`: commands that give help about a given command.
-- `man -k text`: searches for commands that contain the given text in their description.
-- `mandb`: updates the man pages with the latest updates.
-- `updatedb`: updates the database so that the locate search includes the latest added files.
+# Команды Linux
+## Помощь
+- `man, help, apropos, whereis, whatis, which`: команды, которые дают справку по указанной команде.
+- `man -k text`: ищет команды, содержащие в своем описании заданный текст.
+- `mandb`: обновляет справочные страницы до последней версии.
+- `updatedb`: обновляет базу данных, чтобы поиск местоположения включал последние добавленные файлы.
 
-## Useful Linux commands
-- How many users are logged in: `who`
-- Who is the current user: `whoami`
-- Print the date: `date`
-- Show calendar: `cal`
-- Print working directory: `pwd`
-- Print files and directory of the current directory: `ls`
-- Manual help: `man whoami`
-- Create a new directory: `mkdir directoryname`
-- Create a new empty file: `touch filename`
-- Remove a directory: `rmdir directoryname`
-- Remove a file: `rm filename`
-- Remove a directory and its content: `rm -r directoryname`
-- Display list of available commands: `help`
-- Clear terminal: `clear`, `ctrl+l`
-- Exit session: ``exit`
-- Display date: `date`
-- Display time: `time`
-- Print information: `hello`
-- Increase the font size: `Ctrl, shift and +`
-- Print 5 random numbers between 1 and 100: `shuf -i 1-100 -n 5`
-- Creating file using the `shuf` command: `touch dir$(shuf -i 1-10 -n 1)/sunny.txt `
-- Simple user: `$ prompt`
-- Root user/admin: `# prompt`
-- Switch from simple user to root user: `sudo -i`
-- Switch from root to simple user:  `exit`
+## Полезные Команды Linux
+- Узнать сколько пользователей зарегистрировано в системе: `who`
+- Кто текущий пользователь: `whoami`
+- Показать календарь: `cal`
+- Вывести рабочий каталог(дерикторию): `pwd`
+- Вывести файлы и подкаталоги текущего каталога: `ls`
+- Ручная помощь: `man whoami`
+- Создайте новый каталог: `mkdir имя_каталога`
+- Создайте новый пустой файл: `touch имя_файла`
+- Удалить каталог: `rmdir имя_каталога`
+- Удалить файл: `rm имя_файла`
+- Удалить каталог и его содержимое: `rm -r имя_каталога`
+- Отобразить список доступных команд: `help`
+- Очистить терминал: `clear`, `ctrl+l`
+- Выход из сеанса: `exit`
+- Отобразить дату: `date`
+- Отобразить время: `time`
+- Распечатать информацию: `hello`
+- Увеличьте размер шрифта: `Ctrl + Shift + '+'`
+- Напечатать 5 случайных чисел от 1 до 100: `shuf -i 1-100 -n 5`
+- Создать файл использующий команду `shuf`: `touch dir$(shuf -i 1-10 -n 1)/sunny.txt`
+- Простой пользователь: `$ prompt`
+- Корневой пользователь/администратор: `# prompt`
+- Сменить простого на корневого пользователя: `sudo -i`
+- Сменить корневого на простого пользователя:  `exit`
 
-## Linux Files Types
+## Типы Файлов Linux
 
-Linux has the following file types:
-- Directory file
-- Normal file (binary or text)
-- Device file: every device is represented as a file
-- To show the type of a file, use the command file file.txt. Linux reads files based on their content and not based on their extensions.
+Linux имеет следующие типы фалов:
+- Каталог или directory file.
+- Обычный файл или normal file (бинарный или текстовый).
+- Файл устройства или device file: каждое устройство представлено в виде файла.
+- Чтобы показать тип файла, используйте команду `file имя_файла. Linux читает файлы на основе их содержимого, а не на основе их расширений.
 
-## Terminal:
-- To open the terminal, use the shortcut ctrl + alt + t
-- To close the terminal, use ctrl + d
-- To show the file that represents the current terminal, use the command tty, which will output the file path, e.g. /dev/pts/0
-- To show files in the current directory, use the command ls -l, where -l means long listing."
+## Терминал:
+- чтобы открыть терминал, используйте горячие клавиши ctrl + alt + t
+- Для закрытия терминала, используйте ctrl + d
+- Чтобы показать файл, представляющий текущий терминал, используйте команду `tty`, которая выведет путь к файлу: /dev/pts/0
+- Чтобы показать файлы в текущем каталоге, используйте команду `ls -l`, где `-l` означает длинный список (long listing)."
 
 ## File Navigation System
 
