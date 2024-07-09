@@ -1,19 +1,21 @@
 ## Введение
+Данный репозиторий является форком `JavaZakariae/Linux-commands`, переведенным на русский язык.
+
 Этот репозиторий не предназначен для объяснения операционной системы Linux, но он может быть очень полезен как напоминание о том, как работает определенная команда Linux. В первой части этого репозитория вы можете найти хорошие примеры практически всего, что связано с командами Linux, во второй части вы найдете все, что связано с программированием в командной строке.
 
 - [Команды Linux](#команды-linux)
   - [Помощь](#помощь)
-  - [Полезные Команды Linux](#полезные-команды-linux)
-  - [Типы Файлов Linux](#типы-файлов-linux)
+  - [Полезные и часто используемые команды Linux](#полезные-и-часто-используемые-команды-linux)
+  - [Типы файлов Linux](#типы-файлов-linux)
   - [Терминал:](#терминал)
   - [Система навигации по файлам](#система-навигации-по-файлам)
   - [Подкаталоги Linux](#подкаталоги-linux)
-  - [ls command and its options](#ls-command-and-its-options)
-  - [Creation of directories](#creation-of-directories)
-  - [Removing directories rm and rmdir commands](#removing-directories-rm-and-rmdir-commands)
-  - [Copying moving and renaiming files and directories](#copying-moving-and-renaiming-files-and-directories)
-  - [Creation of files using cat touch gedit and vi](#creation-of-files-using-cat-touch-gedit-and-vi)
-  - [View files contents using cat tac rev head and tail](#view-files-contents-using-cat-tac-rev-head-and-tail)
+  - [Команда `ls` и ее флаги](#команда-ls-и-ее-флаги)
+  - [Создание каталога](#создание-каталога)
+  - [Команды `rm` and `rmdir`. Удаление каталогов](#команды-rm-and-rmdir-удаление-каталогов)
+  - [Копирование, перемещение и переименование файлов и каталогов](#копирование-перемещение-и-переименование-файлов-и-каталогов)
+  - [Создание файлов при помощи команд `cat`, `touch`, `gedit` и `vi`](#создание-файлов-при-помощи-команд-cat-touch-gedit-и-vi)
+  - [Просмотр содержимого файлов при помощи команд `cat`, `tac`, `rev`, `head` и `tail`](#просмотр-содержимого-файлов-при-помощи-команд-cat-tac-rev-head-и-tail)
   - [View files content using less and more](#view-files-content-using-less-and-more)
   - [Creation of hidden files and directories](#creation-of-hidden-files-and-directories)
   - [Copying moving and renaiming files and directories using cp and mv commands (2)](#copying-moving-and-renaiming-files-and-directories-using-cp-and-mv-commands-2)
@@ -106,12 +108,12 @@
 - `mandb`: обновляет справочные страницы до последней версии.
 - `updatedb`: обновляет базу данных, чтобы поиск местоположения включал последние добавленные файлы.
 
-## Полезные Команды Linux
+## Полезные и часто используемые команды Linux
 - Узнать сколько пользователей зарегистрировано в системе: `who`
 - Кто текущий пользователь: `whoami`
 - Показать календарь: `cal`
 - Вывести рабочий каталог(дерикторию): `pwd`
-- Вывести файлы и подкаталоги текущего каталога: `ls`
+- Вывести список файлов и внутренних каталогов текущего каталога: `ls`
 - Ручная помощь: `man whoami`
 - Создайте новый каталог: `mkdir имя_каталога`
 - Создайте новый пустой файл: `touch имя_файла`
@@ -132,7 +134,7 @@
 - Сменить простого на корневого пользователя: `sudo -i`
 - Сменить корневого на простого пользователя:  `exit`
 
-## Типы Файлов Linux
+## Типы файлов Linux
 
 Чтобы показать тип файла, используйте команду `file имя_файла`. Linux читает файлы на основе их содержимого, а не на основе их расширений. Linux имеет следующие типы фалов:
 - Каталог или directory file.
@@ -140,8 +142,8 @@
 - Файл устройства или device file: каждое устройство представлено в виде файла.
 
 ## Терминал:
-- чтобы открыть терминал, используйте горячие клавиши ctrl + alt + t
-- Для закрытия терминала, используйте ctrl + d
+- чтобы открыть терминал, используйте горячие клавиши `ctrl + alt + t`.
+- Для закрытия терминала, используйте `ctrl + d`.
 - Чтобы показать файл, представляющий текущий терминал, используйте команду `tty`, которая выведет путь к файлу: /dev/pts/0
 - Чтобы показать файлы в текущем каталоге, используйте команду `ls -l`, где `-l` означает длинный список (long listing)."
 
@@ -156,78 +158,91 @@
 
 - `bin` каталог: он содержит все исполняемые двоичные файлы, относящиеся к нашим командам Linux, `which touch` выведет `/user/bin/touch`
 - `sbin` каталог: он содержит все исполняемые двоичные файлы, относящиеся к суперпользователю.
-- `etc` каталог: он содержит информацию о конфигурации системы, требуемую операционной системой, например пароли пользователей `/etc/passwd`, информацию о группах `/etc/group` and информацию о хостах `/etc/hosts`(ip адреса и dns имена).
+- `etc` каталог: он содержит информацию о конфигурации системы, требуемую операционной системой, например пароли пользователей `/etc/passwd`, информацию о группах `/etc/group` и информацию о хостах `/etc/hosts`(ip адреса и dns имена).
 - `tmp` каталог: `tmp` означает временный (temporary). Если какой-либо файл или каталог является временным, он создается в папке `tmp` в текущем сеансе. содержимое каталога будет удалено автоматически после завершения работы.
-- `dev` каталог: `dev` означает устройство (device). Все файлы, относящиеся к устройству, будут храниться в этом каталоге. Используя их, мы можем взаимодействовать с устройством: `tty` - с файлами, относящимися к терминалу, файл `hd` - с файлами на жестком диске и т.д.
-- `mnt` каталог, каталог носителей (для монтирования).
-- `opt` каталог: `opt` означает оциональный (optional), он содержит все установочные файлы программного обеспечения сторонних производителей.
+- `dev` каталог: `dev` означает устройство (device). Все файлы, относящиеся к устройству, будут храниться в этом каталоге. Используя их, мы можем взаимодействовать с устройством.
+- `mnt` каталог: `mnt` означает монтирование (mount). В него системные администраторы могут монтировать внешние или дополнительные файловые системы
+- `opt` каталог: `opt` означает оциональный (optional). Он содержит все установочные файлы программного обеспечения сторонних производителей.
 - `lib` каталог: `lib` означает библиотеки (libraries), которые требуются в приложениях.
-- `var`каталлог: `var` означает переменные данные (variable data). В этом каталоге будут храниться переменные данные, например файлы журналов.
-- `usr`: программное обеспечение, связанное со всеми пользователями.
-- `home`: у каждого пользователя есть отдельная папка для хранения его конкретных данных, таких как изображения, документы и так далее.
+- `var` каталог: `var` означает переменные данные (variable data). В этом каталоге будут храниться переменные данные, например файлы журналов.
+- `usr` каталог:  `usr` означает системные ресурсы пользователя (user system resources). Он содержит программное обеспечение, связанное со всеми пользователями.
+- `home` каталог: у каждого пользователя есть отдельная папка для хранения его конкретных данных, таких как изображения, документы и так далее.
 - `root` каталог: домашний каталог супер пользователя.
 - `proc` каталог: `proc` означает процесс (process), для каждого процесса присваивается уникальный идентификатор, и внутри папки `proc` будет создан отдельный каталог.
-- boot каталог: он содержит файлы, необходимые для загрузки системы Linux.
+- `boot` каталог: он содержит файлы, необходимые для загрузки системы Linux.
 
-## ls command and its options
+## Команда `ls` и ее флаги
 
-- List all files and directories of the directory dir1: `ls dir1`
-- List all files and directories of the current directory: `ls`
-- List content in reverse alphabetical order: `ls -r`
-- List content in a long format(more details on the content): `ls -l`
-- List content based on creation time: `ls -t`
-- Possibility to combine all the above options: `ls -ltr`
-- List also the hidden files: `ls -a`
-- List contents by type: `ls -F` (/, *, @)
-- List contents recursively: `ls -R`
-- List contents with total size(1 block = 1024kb): `ls -s`
-- List contents of the top 10 entries: `ls -l /dir | head`
-- List contents of the top 5 entries: `ls -l /dir | head -5`
-- List contents of the bottom 10 entries: `ls -l /dir | tail`
-- List contents page by page: `ls -l /dir | more` or `ls -l /dir | less`, less is more powerful(forward and backward direction).
+- Вывести список всех файлов и каталогов, находящихся в каталоге `dir1`: `ls dir1`
+- Вывести список файлов и внутренних каталогов текущего каталога: `ls`
+- Вывести список в обратном алфавитном порядке: `ls -r`
+- Вывести список в расширенном формате (более подробно о содержании): `ls -l`
+- Вывести список в зависимости от времени создания: `ls -t`
+Можно комбинировать все вышеперечисленные опции: `ls -ltr`
+- Вывести список включая скрытые файлы: `ls -a`
+- Вывести список по типу: `ls -F`
+- Вывести список рекурсивно: `ls -R`
+- Вывести список с общим размером (1 блок = 1024kb): `ls -s`
+- Вывести список из 10 верхних записей: `ls -l /имя_каталога | head`
+- Вывести список из 5 верхних записей: `ls -l /имя_каталога | head -5`
+- Вывести список из 10 нижних записей: `ls -l /имя_каталога | tail`
+- Вывести список страницу за страницей: `ls -l /имя_каталога | more` или `ls -l /имя_каталога | less`, `less` более мощный инструмент (работает в 2-х направлениях: вперед и назад).
 
-## Creation of directories
+## Создание каталога
 
-- To create a directory in the same pwd: `mkdir directoryName`
-- To create multiple directories in the same pwd: `mkdir dir1 dir2 dir3`
-- To create multiple directories from the same pwd: `mkdir -p dir1/dir2/dir3`. `dir1, dir2` will be created only if they don't exist already.
-- To create multiple directories `mkdir -p dir1/dir2{dir3-1,dir3-2,dir3-3}/dir{1..31}`, every dir3-x will contains 31 directories.
-- Show directory content as a tree data structure:  `tree`
+- Создать каталог в этом же каталоге: `mkdir имя_каталога`
+- Создать сразу несколько каталогов в этом же каталоге: `mkdir имя_каталога1 имя_каталога2 имя_каталога3`
+- Создать сразу несколько каталогов вглубь в этом же каталоге: `mkdir -p имя_каталога1/имя_каталога2/имя_каталога3`. Здесь `имя_каталога1, имя_каталога2` будут созданы только в том случае, если они еще не существуют.
+- Создать сразу несколько каталогов вглубь в этом же каталоге и заполнить некоторые из них другими каталогами: `mkdir -p имя_каталога1/имя_каталога2{имя_каталога3-1,имя_каталога3-2,имя_каталога3-3}/имя_каталога{1..31}`. Здесь каждый `имя_каталога3-X` будет содержать 31 каталог.
+- Показать  содержимое каталога в виде древовидной структуры данных:  `tree`
 
-## Removing directories rm and rmdir commands
-- To remove directories: `rmdir dir1 dir2` (rmdir removes only directories, no file will be deleted, and it will works only if the directories are empty).
-- To remove directories: `rm -r dir1`, or `rm -R dir1`. For files no need to the `-r` option, `-r` for recursive operations.
-- To get confirmation before deleting the contents: `rm -r -i dir1`
-- Force removal `-f`: `rm -rf dir1`
-- Verbose option `-v`: `rm -rv dir1`, to print the flow of the deletion process.
+## Команды `rm` and `rmdir`. Удаление каталогов
 
-## Copying moving and renaiming files and directories
-- To copy file content from one file to another: ```cp a.txt b.txt```, if ```b.txt``` doesn't exist, a new file will be created, if it already exists, the file will be overwritten. ```cp a.txt home/anotherDirectory/c.txt``` to copy content to another destination.
-- To copy files to directories: ```cp a.txt b.txt c.txt home/anotherDirectory/d.txt```, to copy all files ```cp dir1/* dir2```
-- To copy total directory: ```cp -r dir1 dir2```, the content of ```dir1``` will be copied to ```dir2```
-- Renaming a file: ```mv a.txt b.txt```, to rename a directory ```mv dir1 dir2```, if ```dir2``` already exists, ```dir1``` wil be moved inside ```dir2```
-- Moving files from one directory to another: ```mv dir1/* dir2```, ```mv a.txt b.txt dir2```
+- Удалить файл: `rm имя_файла`
+- Удалить пустой каталоги: `rmdir имя_каталога1 имя_каталога2`
+- Удалить каталог вместе с файлами: `rm -r имя_каталога`, или `rm -R имя_каталога`. Для удаления обычных файлов флаг `-r` не нужен.
+- Чтобы получить подтверждение перед удалением содержимого:: `rm -r -i имя_каталога`
+- Принудительное удаление `-f`: `rm -rf имя_каталога`
+- Вывести ход процесса при удалени `v`: `rm -rv имя_каталога`
 
-## Creation of files using cat touch gedit and vi
-- Using the cat command: ```cat > a.txt```, a possibility to write content on the a.txt file, ctrl+c to save and exit, if the file is already available, the data will be overwritten, to perform append operation, ```cat >> a.txt```
-- Using the touch command: ```touch b.txt```, a new empty file will be created, if the file is already available, the data will be not be overwritten, only the last date of modification will be modified.
-- Using the gedit command: ```gedit c.txt```, ctr+s to save, ctrl+q to quit the graphical editor.
-- Using vi editor: ```gedit d.txt```, press i to enter the insert mode, press esc key, :wq to save and quit the editor. vim is an advanced version of the vi editor.
+## Копирование, перемещение и переименование файлов и каталогов
 
+- Копировать содержимое файла из одного файла в другой: `cp имя_файла1 имя_файла2`. Если `имя_файла2` не существует, будет создан новый файл, если нет, то файл будет перезаписан.
+- Копировать содержимое в другое место: `cp имя_файла1 home/имя_каталога/имя_файла2`.
+- Копировать несколько файлов в каталог: `cp имя_файла1 имя_файла2 имя_файла3 home/имя_каталога/`.
+- Копировать все файлы из каталога: `cp имя_каталога1/* имя_каталога2`.
+- Копировать файлы вместе с каталогом: `cp -r имя_каталога1 имя_каталога2`, `имя_каталога1` будет скопировано в `имя_каталога2`.
+- Переименовать файл: `mv имя_файла1 имя_файла2`.
+- Переименовать каталог: `mv имя_каталога1 имя_каталога2`, если `имя_каталога2` уже существует, `имя_каталога1` будет перемещен внутрь `имя_каталога2`.
+- Перемещение нескольких файлов в каталог: `mv имя_файла1 имя_файла2 имя_каталога2`
+- Перемещение всех файлов из одного каталога в другой: `mv имя_каталога1/* имя_каталога2`.
 
-## View files contents using cat tac rev head and tail
-- View content using cat command:  ```cat < a.txt```, where ```<``` symbol is optional. ```-n``` option to display line numbers, ```-n``` to skip blank lines numbering. ```cat a.txt b.txt``` will print the content of the two passed files.
-- Create and add content to a file: ```cat > a.txt```, ```added content```, ```ctrl+d``` to exit the editing section.```>>``` for append operation.
-- Copy content from one file to another using cat command: ```cat a.txt >> b.txt```, using ```>``` will overwrite the content of the b.txt file. 
-- Copy content from many files to one file: ```cat a.txt b.txt >> c.txt```
-- View content of a file in reversed order: ```tac a.txt```, the order here is the order of the file lines.
-- View content of a file in a horizontal reversed order: ```rev a.txt```, if the content of ```a.txt``` is ```content```, the result of the previous command will be ```tnetnoc```
-- ```cat``` command is suitable for small ```files```, if the files are huge, ```head``` and ```tail```, ```more``` and ```less``` are the most recommended commands.
-- To view specified lines from the top of a file: ```head a.txt```, first 10 lines ```head -n 10 a.txt```, abbreviation: ```head -10 a.txt```
-- To view specified lines except some specified lines: ```head -n -5 a.txt``` will display all lines except the last 5 lines.
-- To view specified number of character: ```head -c 5 a.txt``` will show the first 5 characters.
-- To view specified lines from the bottom of a file: ```tail a.txt``` last 10 lines, last 5 lines ```tail -n 5 a.txt```, abbreviation: ```tail -5 a.txt```, ```tail -c 100 a.txt``` will print the last ```100``` characters.
-- To view content from line 3 to line 7 using piping: ```head -7 a.txt | tail -5```
+## Создание файлов при помощи команд `cat`, `touch`, `gedit` и `vi`
+
+- Используя команду `cat`: `cat > имя_файла`, можно записывать данные в файл `имя_файла`. Горячие клавиши `ctrl + c` позволяют сохранить изменения и выйти из файла. Если файл уже существует, то он перезапишется. Для того, чтобы добавить данные в файл, а не перезаписывать его, нужно использовать оператор добавления `>>`: `cat >> имя_файла`
+- Используя команду `touch`: `touch имя_файла`, создастся новый пустой файл. Если файл уже существует, данные перезаписываться не будут, обновится лишь дата последнего изменения.
+- Используя команду `gedit`: `gedit имя_файла`. Горячие клавиши: `ctr + s` - сохранить, `ctrl + q` - выйти из графического редактора.
+- Используя `vi редактор`: `gedit имя_файла`. Нажмите `i` для входа в режим ввода (insert mode) и `esc`, для выхода из него. Команда `:wq` позволит сохранить изменения и выйти из редактора. `vim` более продвинутая версия `vi редактора`.
+
+## Просмотр содержимого файлов при помощи команд `cat`, `tac`, `rev`, `head` и `tail`
+
+- Используя команду `cat`:  `cat < имя_файла`. Здесь оператор `<` опционален.
+- Отобразить содержимое файла с номерами строк `-n`: `cat -n имя_файла1`.
+- Отобразить содержимое нескольких файлов: `cat имя_файла1 имя_файла2`.
+- Создать и добавить данные в файл: `cat > имя_файла`, ввести данные, нажать `ctrl + d` для выхода из раздела редактирования. Используйте оператор `>>` для того, чтобы добавлять данные в файл.
+- Скопировать содержимое одного файла в другой при помощи команды `cat`: `cat имя_файла1 >> имя_файла2`. Использование оператора `>` перепишет содержимое файла `имя_файла2`. 
+- Скопировать содержимое нескольких файлов в 1 при помощи команды `cat`: `cat имя_файла1 имя_файла2 >> имя_файла3`
+- Отобразить содержимое файла в обратном порядке при помощи команды `tac`: `tac имя_файла`. порядок здесь - это порядок нумерации строк файла.
+- Отобразить содержимое файла в обратном порядке по горизонтали при помощи команды `rev`: `rev имя_файла`. Если содержимое файла `имя_файла` будет `Привет!`, то результатом будет `!тевирП`.
+Команда `cat` больше подходит для небольших файлов. Если файл большой, то рекомендуется использовать команды `head` и `tail`или `more` и `less`.
+- Отобразить первые 10 строк файла: `head имя_файла`.
+- Отобразить первые 5 строк: `head -n 5 a.txt` или `head -5 имя_файла`.
+- Отобразить все содержиое файла, за исключением последних 5 строк: `head -n -5 имя_файла`.
+- Отобразить первые 5 символов содержимого файла: `head -c 5 имя_файла`.
+- Отобразить последние 10 строк файла: `tail имя_файла` 
+- Отобразить последние 5 строк: `tail -n 5 имя_файла` или `tail -5 имя_файла`.
+- Отобразить последние 5 символов содержимого файла: `tail -c 5 имя_файла`.
+- Отобразить содержимое файла со строки 3 по строку 7: `head -7 имя_файла | tail -5`
 
 ## View files content using less and more
 - To view file content page per page:  ```more a.txt```, press ```enter``` to display next line, press ```space bar``` to display the next page, press ```q``` to exit, ```more -d a.txt``` to display more info about the file. By using more command, we can view file content page per page only in forward direction.
